@@ -13,6 +13,34 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
+        /* Loader styling */
+        .loader-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1976d2;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Fullscreen video background */
         .video-background {
             position: fixed;
@@ -24,12 +52,7 @@
             opacity: 90%;
             z-index: -2; /* Send video behind other content */
         }
-        /* *{
-            background-color: rgba(255, 0, 0, 0.2);
-            z-index: -1;
-            height: 100vh;
-            width: 100vw;
-        } */
+
         /* Content container styling */
         .container {
             margin: 20px auto;
@@ -44,7 +67,6 @@
         .container:hover{
             transform: scale(1.1) ;
             background: rgba(223, 225, 250, 0.6); 
-
         }
 
         header {
@@ -151,7 +173,6 @@
             transition: transform 0.3s ease;
             border-radius: 6px;
             color:rgb(115, 131, 157)
-
         }
         .point:hover{
             background-color: rgba(31, 39, 76, 0.6);
@@ -167,13 +188,18 @@
     </style>
 </head>
 <body>
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
     <!-- Video background -->
     <video autoplay muted loop class="video-background">
         <source src="/static/1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     
-    <header >Flood Risk Prediction</header>
+    <header>Flood Risk Prediction</header>
     <div class="container">
         <h1>Check Weather and Flood Risk</h1>
         <form id="weatherForm">
@@ -186,26 +212,39 @@
     </div>
     <div id="container2">
         <h2 style="color: rgb(223, 225, 250);">Mitigation Stratagies</h2>
-        <div id="temp"><div class="point"><p> Structural Measures <br><br>
-            Construct levees, dams, and flood barriers to control water flow and prevent flooding in populated areas. Build retention basins and reservoirs to store excess rainwater during heavy rainfall. Improve stormwater drainage systems to handle urban runoff efficiently. Elevate critical infrastructure like hospitals, power stations, and homes in flood-prone areas. Reinforce riverbanks to prevent erosion and reduce the risk of overflow. Conduct regular maintenance of these structures to ensure they remain effective during floods.</p></div>
-        <div class="point"><p>Non-Structural Measures <br><br>
-            Designate flood-prone areas for low-risk uses like agriculture or parks through floodplain zoning. Develop early warning systems using weather radars and predictive models to issue timely alerts. Conduct public awareness campaigns to educate communities about flood risks and safety measures. Prepare emergency response plans, including evacuation routes and relief supply distribution. Promote community participation in disaster preparedness programs. Establish coordination among local authorities for swift and effective flood response.</p></div>
-        <div class="point"><p>Nature-Based Solutions <br><br>
-            Restore wetlands to act as natural sponges that absorb and slow down excess water. Plant trees and promote reforestation to reduce surface runoff and enhance water absorption. Use green infrastructure like green roofs, rain gardens, and porous pavements to manage urban flooding. Protect mangroves and coastal vegetation to shield against storm surges and flooding. Widen and deepen rivers to improve water flow and reduce the likelihood of overflow. Promote sustainable farming practices to prevent soil erosion and maintain natural water flow.</p></div>
-        <div class="point"><p>Technological Interventions <br><br>
-            Install IoT-based sensors and monitoring systems to track water levels in real time. Use AI and machine learning models to predict floods based on weather and hydrological data. Develop mobile applications to provide real-time alerts and evacuation instructions to residents. Employ GIS mapping to identify high-risk flood zones and plan mitigation strategies. Use drones for aerial surveys and monitoring of flood-affected areas. Enhance forecasting capabilities by integrating satellite data and advanced weather models.</p></div>
-        <div class="point"><p> Socioeconomic Strategies <br><br>
-            Relocate communities living in high-risk flood zones to safer areas with better infrastructure. Provide affordable flood insurance to help individuals and businesses recover financially after floods. Diversify livelihoods in flood-prone areas to reduce dependence on agriculture and promote economic resilience. Establish disaster relief funds to provide immediate assistance to affected communities. Conduct skill-building workshops to train residents in emergency response and recovery. Promote public-private partnerships for funding and implementing flood mitigation measures.</p></div>
-        <div class="point"><p>Policy and Governance <br><br>
-            Enforce strict building codes to ensure flood-resistant construction in vulnerable areas. Implement integrated water resource management to coordinate upstream and downstream water usage. Allocate government funding for large-scale flood prevention and mitigation projects. Strengthen local governance structures for better disaster response coordination. Develop national policies for climate adaptation and flood risk management. Monitor and evaluate the effectiveness of mitigation measures through regular assessments and public feedback.</p></div>
+        <div id="temp">
+            <div class="point">
+                <p> Structural Measures <br><br>
+                Construct levees, dams, and flood barriers to control water flow and prevent flooding in populated areas. Build retention basins and reservoirs to store excess rainwater during heavy rainfall. Improve stormwater drainage systems to handle urban runoff efficiently. Elevate critical infrastructure like hospitals, power stations, and homes in flood-prone areas. Reinforce riverbanks to prevent erosion and reduce the risk of overflow. Conduct regular maintenance of these structures to ensure they remain effective during floods.</p>
+            </div>
+            <div class="point">
+                <p>Non-Structural Measures <br><br>
+                Designate flood-prone areas for low-risk uses like agriculture or parks through floodplain zoning. Develop early warning systems using weather radars and predictive models to issue timely alerts. Conduct public awareness campaigns to educate communities about flood risks and safety measures. Prepare emergency response plans, including evacuation routes and relief supply distribution. Promote community participation in disaster preparedness programs. Establish coordination among local authorities for swift and effective flood response.</p>
+            </div>
+            <div class="point">
+                <p>Nature-Based Solutions <br><br>
+                Restore wetlands to act as natural sponges that absorb and slow down excess water. Plant trees and promote reforestation to reduce surface runoff and enhance water absorption. Use green infrastructure like green roofs, rain gardens, and porous pavements to manage urban flooding. Protect mangroves and coastal vegetation to shield against storm surges and flooding. Widen and deepen rivers to improve water flow and reduce the likelihood of overflow. Promote sustainable farming practices to prevent soil erosion and maintain natural water flow.</p>
+            </div>
+            <div class="point">
+                <p>Technological Interventions <br><br>
+                Install IoT-based sensors and monitoring systems to track water levels in real time. Use AI and machine learning models to predict floods based on weather and hydrological data. Develop mobile applications to provide real-time alerts and evacuation instructions to residents. Employ GIS mapping to identify high-risk flood zones and plan mitigation strategies. Use drones for aerial surveys and monitoring of flood-affected areas. Enhance forecasting capabilities by integrating satellite data and advanced weather models.</p>
+            </div>
+            <div class="point">
+                <p> Socioeconomic Strategies <br><br>
+                Relocate communities living in high-risk flood zones to safer areas with better infrastructure. Provide affordable flood insurance to help individuals and businesses recover financially after floods. Diversify livelihoods in flood-prone areas to reduce dependence on agriculture and promote economic resilience. Establish disaster relief funds to provide immediate assistance to affected communities. Conduct skill-building workshops to train residents in emergency response and recovery. Promote public-private partnerships for funding and implementing flood mitigation measures.</p>
+            </div>
+            <div class="point">
+                <p>Policy and Governance <br><br>
+                Enforce strict building codes to ensure flood-resistant construction in vulnerable areas. Implement integrated water resource management to coordinate upstream and downstream water usage. Allocate government funding for large-scale flood prevention and mitigation projects. Strengthen local governance structures for better disaster response coordination. Develop national policies for climate adaptation and flood risk management. Monitor and evaluate the effectiveness of mitigation measures through regular assessments and public feedback.</p>
+            </div>
         </div>
     </div>
 
     <script>
-        
         const form = document.getElementById('weatherForm');
         const resultDiv = document.getElementById('result');
         const errorDiv = document.getElementById('error');
+        const loaderContainer = document.querySelector('.loader-container');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -213,16 +252,21 @@
             const location = document.getElementById('location').value.trim();
             resultDiv.style.display = 'none';
             errorDiv.style.display = 'none';
+            loaderContainer.style.display = 'flex'; // Show loader
 
             if (!location) {
+                loaderContainer.style.display = 'none'; // Hide loader
                 errorDiv.style.display = 'block';
                 errorDiv.textContent = 'Please enter a valid location.';
                 return;
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/weather?location=${encodeURIComponent(location)}`);
+                const response = await fetch(`http://127.0.0.1:5000/weather?location=${encodeURIComponent(location)}`);
                 const data = await response.json();
+
+                // Always hide loader, regardless of response
+                loaderContainer.style.display = 'none';
 
                 if (response.ok) {
                     resultDiv.style.display = 'block';
@@ -238,10 +282,13 @@
                     errorDiv.textContent = data.error || 'Failed to fetch data. Please try again.';
                 }
             } catch (err) {
+                loaderContainer.style.display = 'none'; // Hide loader
                 errorDiv.style.display = 'block';
                 errorDiv.textContent = 'An error occurred. Please check the server or try again later.';
             }
         });
+
+        // Horizontal scrolling for mitigation strategies
         const scrollContainer = document.getElementById('temp');
 
         scrollContainer.addEventListener('wheel', (e) => {
@@ -256,8 +303,6 @@
                 scrollContainer.scrollLeft += scrollAmount;
             });
         });
-
-
     </script>
-</body> 
+</body>
 </html>
